@@ -1,94 +1,60 @@
 ---
-name: "Ada Lovelace"
-title: "Principal Software Engineer"
-email: "ada@example.com"
-phone: "+1 (555) 010-1815"
-location: "London, UK"
-website: "https://ada.example.com"
-github: "adalovelace"
-linkedin: "adalovelace"
-summary: >
-  Systems engineer with 15+ years building distributed infrastructure,
-  developer tooling, and high-throughput data pipelines. Comfortable from
-  kernel-adjacent work up to product-facing APIs. Strong preference for
-  boring technology, sharp interfaces, and code that survives its author.
+name: Patrick Foltz
+phone: "(681) 220-8815"
+location: Oak Hill, WV
 ---
 
-> **You're looking at a demo resume rendered by [starsheet](https://github.com/nulvox/starsheet)** —
-> a GitHub template for single-source Markdown resumes that export to HTML,
-> PDF, DOCX, and RTF. The person below is fictional. To build your own,
-> click **"Use this template"** on the [template repo](https://github.com/nulvox/starsheet)
-> and edit `src/content/resume.md`.
+## Work Experience
 
-## Summary
+### AT&T Inc. — Retail Sales Consultant
+*July 2024 – Present*
 
-Systems engineer with 15+ years building distributed infrastructure,
-developer tooling, and high-throughput data pipelines. Comfortable from
-kernel-adjacent work up to product-facing APIs. Strong preference for boring
-technology, sharp interfaces, and code that survives its author.
+- Assess customer needs and recommend products and services as a connectivity expert.
+- Manage inventory intake and proper placement based on business needs.
+- Oversee the daily register and ensure accurate cash counts in the safe and register.
+- Maintain the security of demo and display devices.
+- Review customer bill statements to clarify disputes and improve billing comprehension.
+- Provide account-level solutions for customer complications.
 
-## Experience
+---
 
-### Principal Engineer — **Analytical Engine Co.** {.role}
-*Jan 2021 – Present · London, UK*
+### Sheetz Inc. — Flex Supervisor
+*March 2023 – June 2024*
 
-- Led the rewrite of the core scheduling layer from a hand-rolled actor
-  system to a Rust-based work-stealing executor; reduced p99 task latency
-  from 340ms to 28ms across 12k workers.
-- Designed and shipped an internal Wasm plugin runtime that lets product
-  teams deploy customer-specific transforms without redeploying the
-  pipeline. Adopted by 8 of 11 product teams in the first six months.
-- Mentored four senior engineers into staff-level scope; built the
-  engineering ladder rubric the company still uses.
+- Traveled across the district to provide management coverage for planned and unplanned absences.
+- Delivered training and mentorship to 20+ new and existing employees across multiple locations.
+- Performed Assistant Manager duties in the absence of store management.
+- Modeled performance standards and fostered a positive store culture through active customer engagement.
+- Applied strong communication and problem-solving skills to ensure customer satisfaction and support employee needs.
+- Delegated tasks effectively under high staff-to-task ratios to ensure all required work was completed on time.
 
-### Staff Engineer — **Babbage Systems** {.role}
-*Mar 2016 – Dec 2020 · Remote*
+### Sheetz Inc. — Store Team Member
+*January 2018 – March 2023*
 
-- Owned the storage layer for a multi-tenant timeseries database (Go,
-  500TB+ active, 2M writes/sec sustained). Reduced steady-state cost per
-  ingested point by 61% over three years.
-- Built `babctl`, the operational CLI used by every SRE in the company.
-  Open-sourced internally; eventually externalised as the basis for the
-  Babbage Cloud control plane.
-- Drove adoption of property-based testing across the storage org. Caught
-  a class of off-by-one bugs in compaction that had previously shipped
-  three times.
+- Prepared and served food and beverages to customer order.
+- Cleaned and maintained kitchen equipment, drink stations, and the sales floor.
+- Restocked sales floor items and managed various station supplies.
+- Maintained a positive and professional attitude with both staff and customers.
+- Handled customer disagreements calmly and de-escalated tense situations effectively.
 
-### Senior Engineer — **Punchcard Labs** {.role}
-*Jul 2012 – Feb 2016 · Cambridge, UK*
-
-- First infrastructure hire. Built the deploy system, the secrets pipeline,
-  and the initial observability stack from a blank repo.
-- Wrote the company's first incident review process. Still in use, mostly
-  unchanged, eight years later.
-
-## Open Source
-
-- **`weaver`** — a Rust crate for building deterministic distributed test
-  harnesses. 4.2k stars. Used in production by three companies I know of
-  and probably more I don't.
-- **`pgsnap`** — a Postgres logical-snapshot tool written in Go. Featured
-  in *Postgres Weekly* #487.
-- Occasional contributor to the **Pandoc**, **Nushell**, and **helix**
-  projects.
+---
 
 ## Skills
 
-**Languages**: Rust, Go, Python, C, TypeScript, a bit of OCaml when no one
-is watching.
-**Systems**: Linux internals, eBPF, io_uring, distributed consensus
-(Raft/Paxos in anger), Postgres, ClickHouse, Kafka, NATS.
-**Practice**: Property-based testing, fuzzing, formal modelling with TLA+
-for the parts that warrant it, technical writing, mentoring.
+**Customer & Team Relations:** Customer Engagement, Team Building, Mediation, Peer Communication, Conflict De-escalation
+
+**Operations:** Task Delegation, Preparation & Planning, Money Handling, Inventory Management, Food Safety Certified
+
+**Technical:** Windows OS, Computer Hardware, Microsoft Office (Word, Excel, PowerPoint), Research & Information Gathering
+
+**General:** Problem Solving, Mathematics, Spatial Reasoning, Direction Following, Solo & Group Work, Experimentation & Visualization
+
+---
 
 ## Education
 
-**MSc, Computer Science** — University of Cambridge, 2012
-**BA, Mathematics** — University of Cambridge, 2010
+**High School Diploma** — Eastern Guilford High School
+*June 2016 · Certificate in STEM Course Cluster*
 
-## Speaking & Writing
-
-- *"Boring Storage for Exciting Problems"* — Strange Loop 2023
-- *"What I Learned Deleting 40,000 Lines of Code"* — QCon London 2022
-- Blog at <https://ada.example.com/writing> — roughly one post per month,
-  mostly about distributed systems pathologies.
+**College Experience** — Guilford Technical Community College
+*September 2016*
