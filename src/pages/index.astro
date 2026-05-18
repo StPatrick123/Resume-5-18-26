@@ -1,0 +1,12 @@
+---
+// src/pages/index.astro
+// Entry point. Loads the markdown file via Astro's content imports and
+// renders it inside the Resume layout. Frontmatter flows from the .md file
+// straight into the layout's header.
+import Resume from '../layouts/Resume.astro';
+import { Content, frontmatter } from '../content/resume.md';
+---
+
+<Resume frontmatter={frontmatter}>
+  <Content />
+</Resume>

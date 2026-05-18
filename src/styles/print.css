@@ -1,0 +1,71 @@
+/* src/styles/print.css
+ * Used by both browser print and WeasyPrint. WeasyPrint understands CSS
+ * Paged Media (@page) much better than browsers do, so we lean on it.
+ */
+
+@page {
+  size: Letter;
+  margin: 0.6in 0.7in;
+
+  @bottom-center {
+    content: "View live version at https://ada.example.com";
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 9pt;
+    color: #6b7280;
+  }
+
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 9pt;
+    color: #6b7280;
+  }
+}
+
+@media print {
+  :root {
+    --fg: #111111;
+    --fg-muted: #444444;
+    --bg: #ffffff;
+    --rule: #cccccc;
+    --accent: #0f766e;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+
+  .resume {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .resume-header h1 { font-size: 18pt; }
+  .role-line        { font-size: 11pt; }
+  .resume-body h2   { font-size: 11pt; margin-top: 14pt; }
+  .resume-body h3   { font-size: 10.5pt; }
+
+  /* Don't break headings away from their content. */
+  h2, h3 { break-after: avoid; }
+
+  /* Keep job entries together where possible. */
+  .resume-body h3 + p,
+  .resume-body h3 + p + ul {
+    break-inside: avoid;
+  }
+
+  /* Print URLs after links so PDF readers see the destination. */
+  .resume-body a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #6b7280;
+    word-break: break-all;
+  }
+
+  /* But not for the contact links — those would be noisy. */
+  .contact a::after { content: none; }
+}

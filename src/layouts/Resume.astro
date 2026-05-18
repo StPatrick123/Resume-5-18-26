@@ -1,0 +1,53 @@
+---
+// src/layouts/Resume.astro
+// Wraps the rendered markdown in a print-friendly shell and injects the
+// floating export bar. Frontmatter from the markdown file flows in via props.
+import ExportBar from '../components/ExportBar.astro';
+import '../styles/resume.css';
+import '../styles/print.css';
+
+const { frontmatter } = Astro.props;
+const {
+  name,
+  title,
+  email,
+  phone,
+  location,
+  website,
+  github,
+  linkedin,
+} = frontmatter;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{name} — {title}</title>
+    <meta name="description" content={`Resume for ${name}, ${title}`} />
+    <link rel="canonical" href={website} />
+  </head>
+  <body>
+    <ExportBar />
+
+    <main class="resume">
+      <header class="resume-header">
+        <h1>{name}</h1>
+        <p class="role-line">{title}</p>
+        <ul class="contact">
+          {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
+          {phone && <li>{phone}</li>}
+          {location && <li>{location}</li>}
+          {website && <li><a href={website}>{website.replace(/^https?:\/\//, '')}</a></li>}
+          {github && <li><a href={`https://github.com/${github}`}>github.com/{github}</a></li>}
+          {linkedin && <li><a href={`https://linkedin.com/in/${linkedin}`}>linkedin.com/in/{linkedin}</a></li>}
+        </ul>
+      </header>
+
+      <article class="resume-body">
+        <slot />
+      </article>
+    </main>
+  </body>
+</html>
