@@ -1,4 +1,4 @@
-SITE_URL ?= https://ada.example.com
+SITE_URL ?= https://StPatrick123.github.io/starsheet/Resume-5-18-26
 
 .PHONY: all build dev clean install exports html
 
