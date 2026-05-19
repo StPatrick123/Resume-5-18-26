@@ -3,6 +3,7 @@ dist/
 .astro/
 .DS_Store
 *.log
+.vscode/
 
 # Pandoc reference doc is checked in; the auto-generated footer is not.
 templates/footer.md
