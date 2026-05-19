@@ -67,7 +67,7 @@ jobs:
       - name: Build site and exports
         run: make SITE_URL="${{ steps.vars.outputs.site_url }}"
 
-      - uses: actions/upload-artifact@6
+      - uses: actions/upload-artifact@v6
         with:
           name: dist-${{ github.ref_name }}
           path: dist
@@ -79,7 +79,7 @@ jobs:
       name: github-pages
       url: ${{ needs.build.outputs.site_url }}
     steps:
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v8
         with:
           name: dist-${{ github.ref_name }}
           path: dist
@@ -88,7 +88,7 @@ jobs:
       # keep_files: true preserves every other branch's deployed content so
       # one branch deployment never clobbers another.
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v6
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: dist
