@@ -29,9 +29,9 @@ jobs:
       site_url: ${{ steps.vars.outputs.site_url }}
       dest_dir: ${{ steps.vars.outputs.dest_dir }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '24'
           cache: 'npm'
@@ -67,7 +67,7 @@ jobs:
       - name: Build site and exports
         run: make SITE_URL="${{ steps.vars.outputs.site_url }}"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@6
         with:
           name: dist-${{ github.ref_name }}
           path: dist
@@ -79,7 +79,7 @@ jobs:
       name: github-pages
       url: ${{ needs.build.outputs.site_url }}
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v6
         with:
           name: dist-${{ github.ref_name }}
           path: dist
@@ -88,7 +88,7 @@ jobs:
       # keep_files: true preserves every other branch's deployed content so
       # one branch deployment never clobbers another.
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: dist
