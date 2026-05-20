@@ -2,7 +2,13 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - management
+      - operations
+      - moneyHandling
+      - retailLead
+      - techSupport
   workflow_dispatch:
 
 permissions:
@@ -18,8 +24,19 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Keep this list in sync with the branch triggers above.
+      VARIANT_BRANCHES: management operations moneyHandling retailLead techSupport
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Fetch variant branches
+        run: |
+          for branch in $VARIANT_BRANCHES; do
+            git fetch --depth=1 origin "$branch" || echo "::warning::Branch $branch not found, skipping"
+          done
 
       - uses: actions/setup-node@v4
         with:
@@ -37,13 +54,62 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Build site and exports
+      # ------------------------------------------------------------------
+      # 1. Build main (root of the site)
+      # ------------------------------------------------------------------
+      - name: Build main site
         env:
-          # Feed Astro's site/base from the Pages config so links and
-          # asset paths come out right on any forked repo.
           PAGES_SITE: ${{ steps.pages.outputs.origin }}
           PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: make SITE_URL="${{ steps.pages.outputs.base_url }}"
+
+      - name: Collect main output
+        run: |
+          mkdir -p "$RUNNER_TEMP/site"
+          cp -r dist/* "$RUNNER_TEMP/site/"
+
+      # ------------------------------------------------------------------
+      # 2. Build each variant branch into its own subdirectory
+      # ------------------------------------------------------------------
+      - name: Build variant branches
+        env:
+          PAGES_SITE: ${{ steps.pages.outputs.origin }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          for branch in $VARIANT_BRANCHES; do
+            if ! git rev-parse --verify "origin/$branch" >/dev/null 2>&1; then
+              echo "::warning::Branch $branch not found, skipping"
+              continue
+            fi
+
+            echo "::group::Building $branch"
+
+            # Swap in only the resume content from the variant branch
+            git checkout "origin/$branch" -- src/content/resume.md
+
+            # Clean previous build artifacts
+            rm -rf dist .astro
+
+            # Build with the variant's base path so asset/link URLs are correct
+            VARIANT_BASE="${BASE_PATH%/}/$branch"
+            export PAGES_BASE_PATH="$VARIANT_BASE"
+            VARIANT_URL="${PAGES_SITE}${VARIANT_BASE}/"
+
+            make SITE_URL="$VARIANT_URL"
+
+            # Copy into the combined site tree
+            mkdir -p "$RUNNER_TEMP/site/$branch"
+            cp -r dist/* "$RUNNER_TEMP/site/$branch/"
+
+            # Restore main's content for the next iteration
+            git checkout main -- src/content/resume.md
+
+            echo "::endgroup::"
+          done
+
+          # Replace dist/ with the combined output
+          rm -rf dist
+          cp -r "$RUNNER_TEMP/site" dist
 
       - uses: actions/upload-pages-artifact@v3
         with:
